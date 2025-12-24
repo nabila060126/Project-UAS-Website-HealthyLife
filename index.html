@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pola Hidup Sehat</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero-rekomendasi {
+            width: 100%;
+            height: 800px;
+            display: flex;
+            align-items: center;
+            padding-left: 70px;
+            background-image: url("bg slide kedua.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+        
+        .hero-rekomendasi .hero-text {
+            max-width: 800px;
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.2;  
+            margin-bottom: -20px;
+        }
+        
+        .hero-text h1 {
+            font-size: 5rem;
+            color: var(--moss);
+            line-height: 1.3;
+            margin-bottom: 2px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .hero-text .green {
+            color: var(--herb);
+            font-size: 3rem;
+            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 5px;
+        }
+        
+        .hero-text .orange {
+            color: var(--radiate);
+            font-size: 5rem;
+            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 5px;
+        }
+        
+        .hero-text p {
+            margin-top: 10px;
+            line-height: 2;
+            color: #000000;
+            text-align: justify;
+            text-justify: inter-word;
+            font-size: 1.1rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .content {
+            text-align: center;
+            padding: 50px 0;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #FFFADD 100%);
+        }
+        
+        .content .cards {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 20px;
+            font-size: 18px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .content h2 {
+            color: var(--moss);
+            font-size: 2rem;
+            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 10px;
+        }
+        
+        .content .orange {
+            color: var(--radiate);
+            font-size: 3rem;
+            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <div class="logo-image">
+            <img src="Healthy.png" alt="Logo Healthy">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">HOME</a></li>
+                <li><a href="rekomendasi.html">REKOMENDASI</a></li>
+                <li><a href="jadwal.php">JADWAL</a></li>
+                <li><a href="logout.php" style="color: white;">LOGOUT</a></li>
+            </ul>
+        </nav>
+    </header>
+ 
+    <!-- Section Hero -->
+    <section class="hero-rekomendasi">
+        <div class="hero-text">
+            <h2><span class="green">Selamat Datang!!</span></h2>
+            <h1><span>POLA HIDUP</span> <span class="orange">SEHAT</span></h1>
+            <p>
+                Temukan berbagai tips, panduan, dan inspirasi untuk menjaga kesehatan tubuh. 
+                Mulai dari pola makan seimbang, olahraga teratur, hingga manajemen tidur yang baik, 
+                semua dirancang untuk membantu kamu menjalani hidup yang lebih sehat dan bahagia setiap hari.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section Rekomendasi dan Jadwal -->
+    <section class="content">
+        <h2><span class="orange">MARI HIDUP SEHAT💪🏻</span></h2>
+        <div class="cards">
+            <a href="rekomendasi.html" class="card">
+                <div class="circle">
+                    <img src="Lemak.png" alt="rekomendasi">
+                </div>
+                <h2>Rekomendasi Hidup Sehat</h2>
+                <h3>Temukan tips dan makanan bergizi untuk hidup sehat.</h3>
+            </a>
+            <a href="jadwal.php" class="card">
+                <div class="circle">
+                    <img src="Kalender.png" alt="Kalender">
+                </div>
+                <h2>Jadwal Hidup Sehat</h2>
+                <h3>Atur pola tidur dan olahraga agar tetap bugar setiap hari.</h3>
+            </a>
+        </div>
+    </section>
+
+    <div class="main-cursor"></div>
+
+    <script>
+        const mainCursor = document.querySelector(".main-cursor");
+
+        window.addEventListener("mousemove", function (e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // 1. Gerakkan kursor utama (gambar besar) secara instan
+            if (mainCursor) {
+                mainCursor.style.left = `${posX}px`;
+                mainCursor.style.top = `${posY}px`;
+            }
+
+            // 2. Panggil fungsi untuk membuat partikel (gambar kecil)
+            createParticle(posX, posY);
+        });
+
+        // Fungsi untuk menciptakan elemen gambar jejak
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.classList.add('cursor-particle');
+            document.body.appendChild(particle);
+
+            // Set posisi awal partikel tepat di lokasi mouse saat ini
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+
+            // Tambahkan sedikit variasi rotasi acak agar terlihat alami
+            const randomRotation = Math.random() * 360;
+            // Kita set transform awal di sini agar bisa ditimpa oleh animasi CSS
+            particle.style.setProperty('--rotation', `${randomRotation}deg`);
+
+            // Hapus elemen partikel setelah 1 detik (sesuai durasi animasi di CSS)
+            // agar website tidak menjadi berat.
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        }
+    </script>
+
+    <!-- Section Running Text -->
+    <div class="running-text">
+        <marquee behavior="scroll" direction="left" scrollamount="10">
+            JADIKAN HIDUPMU LEBIH BAIK DENGAN POLA HIDUP SEHAT | SEHAT DIMULAI DARI KEBIASAAN KECIL | PELAN PELAN MENUJU HIDUP YANG LEBIH SEHAT | JADIKAN HIDUPMU LEBIH BAIK DENGAN POLA HIDUP SEHAT | SEHAT DIMULAI DARI KEBIASAAN KECIL | PELAN PELAN MENUJU HIDUP YANG LEBIH SEHAT | JADIKAN HIDUPMU LEBIH BAIK DENGAN POLA HIDUP SEHAT | SEHAT DIMULAI DARI KEBIASAAN KECIL | PELAN PELAN MENUJU HIDUP YANG LEBIH SEHAT | JADIKAN HIDUPMU LEBIH BAIK DENGAN POLA HIDUP SEHAT | SEHAT DIMULAI DARI KEBIASAAN KECIL | PELAN PELAN MENUJU HIDUP YANG LEBIH SEHAT | JADIKAN HIDUPMU LEBIH BAIK DENGAN POLA HIDUP SEHAT | SEHAT DIMULAI DARI KEBIASAAN KECIL | PELAN PELAN MENUJU HIDUP YANG LEBIH SEHAT
+        </marquee>
+    </div>
+</body>
+</html>

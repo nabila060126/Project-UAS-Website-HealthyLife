@@ -1,0 +1,244 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* PALET WARNA */
+:root {
+  --herb: #6A8042;
+  --gleam: #FFE787;
+  --pearl: #FFFADD;
+  --radiate: #ED7A13;
+  --moss: #1E3006;
+}
+
+/* BODY */
+body {
+  background: linear-gradient(#fde688, #ffffff);
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* 1. Hapus kursor asli */
+body, a, button, .card, input, select, textarea {
+    cursor: none !important;
+}
+
+/* 2. Styling Kursor Utama - PERBAIKAN UKURAN */
+.main-cursor {
+    width: 80px; /* Ubah dari 2160px ke 40px */
+    height: 80px; /* Ubah dari 2700px ke 40px */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    pointer-events: none;
+    background-image: url('wortel.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translate(-50%, -50%);
+}
+
+/* 3. Styling Partikel Jejak (Gambar yang ditinggalkan) */
+.cursor-particle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px; /* Ukuran lebih kecil untuk jejak */
+    height: 20px;
+    pointer-events: none;
+    z-index: 99998;
+    /* GANTI URL INI DENGAN GAMBAR PARTIKEL ANDA */
+    background-image: url('dots.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* Menjalankan animasi 'particleFall' selama 1 detik */
+    animation: particleFall 1s forwards ease-out;
+}
+
+/* 4. Definisi Animasi Jejak */
+@keyframes particleFall {
+    0% {
+        opacity: 1;
+        /* Posisi awal: di tengah mouse, rotasi acak dari JS, ukuran normal */
+        transform: translate(-50%, -50%) rotate(var(--rotation)) scale(1);
+    }
+    100% {
+        opacity: 0; /* Menghilang perlahan */
+        /* Posisi akhir: jatuh ke bawah 50px, dan mengecil */
+        transform: translate(-50%, 50px) rotate(var(--rotation)) scale(0.5);
+    }
+}
+
+/* NAVBAR REFIXED */
+header {
+  width: 100%;
+  height: 90px; /* Menjaga tinggi header tetap */
+  padding: 0 70px;
+  background-color: #ED7A13 !important; /* Memaksa warna orange (radiate) */
+  display: flex;
+  justify-content: space-between; /* Logo di KIRI, Navigasi di KANAN */
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-sizing: border-box; /* Memastikan padding tidak merusak lebar */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.logo-image {
+  width: 60px; /* Ukuran lingkaran logo tetap */
+  height: 60px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0; /* Mencegah logo mengecil atau membesar */
+}
+
+.logo-image img {
+  width: 45px; /* Ukuran gambar di dalam lingkaran */
+  height: 45px;
+  object-fit: contain;
+}
+
+/* Navigasi */
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex; /* Membuat menu menjadi baris horizontal */
+  gap: 25px; /* Jarak antar tombol */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ffffff !important; /* Warna teks putih */
+  font-weight: 600;
+  font-size: 1rem;
+  position: relative;
+  padding: 5px 0;
+  transition: 0.3s;
+}
+
+/* Efek Garis Bawah (Hanya untuk class active atau hover) */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: -5px;
+  left: 0;
+  background-color: #FFE787; /* Warna gleam */
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* Tombol Logout Putih Oval */
+.nav-links a[style*="color: white;"], 
+.nav-links a[href="logout.php"] {
+  background-color: #ffffff !important;
+  color: #dc3545 !important; /* Teks merah */
+  padding: 8px 20px !important;
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+.nav-links a[href="logout.php"]::after {
+  display: none;
+}
+
+/* CONTENT SECTION (Home Card) */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 500px;
+  height: 500px;
+  background: #f7f7f7;
+  border-radius: 100px;
+  text-decoration: none;
+  color: #6A8042;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 160px 20px;
+  transition: 0.3s;
+  font-family: 'Segoe UI';
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+.card h3 {
+  font-weight: normal; /* menghilangkan efek bold */
+}
+
+.card .circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: var(--herb);
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* supaya gambar tidak keluar dari lingkaran */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.card .circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* agar gambar pas di lingkaran */
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+/* Running Text */
+.running-text {
+  width: 100%;
+  background: var(--radiate);
+  color: var(--pearl);
+  font-weight: bold;
+  font-size: 1.3rem;
+  padding: 15px 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.running-text marquee {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}

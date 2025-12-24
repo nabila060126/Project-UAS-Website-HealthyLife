@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pola Hidup Sehat</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* RESET DAN DASAR */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        /* HERO SECTION - Bagian utama dengan background image */
+        .hero-rekomendasi {
+            width: 100%;
+            height: 800px;
+            display: flex;
+            align-items: center;
+            padding-left: 70px;
+            background-image: url("bg slide pertama.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+        
+        .hero-rekomendasi .hero-text {
+            max-width: 800px;
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.2;  
+            margin-bottom: -20px;
+        }
+
+        .hero-text h1 {
+            font-size: 5rem;
+            color: var(--moss);
+            line-height: 1.3;
+            margin-bottom: -10px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .hero-text .green {
+            color: var(--herb);
+            font-size: 3rem;
+            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: -10px;
+        }
+        
+        .hero-text .orange {
+            color: var(--radiate);
+            font-size: 6rem;
+            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 5px;
+        }
+        
+        .hero-text p {
+            margin-top: 10px;
+            line-height: 2;
+            color: #000000;
+            text-align: justify;
+            text-justify: inter-word;
+            font-size: 1.1rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* NUTRITION SECTION - Bagian kebutuhan nutrisi dengan slider */
+        .nutrition-section {
+            padding: 60px;
+            background-color: #fdfaf5;
+            text-align: center;
+            position: relative;
+            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 0px;
+        }
+        
+        .nutrition-section h3 {
+            font-size: 50px;
+            color: var(--moss);
+            margin-bottom: 20px;
+            font-family: 'Segoe UI';
+        }
+        
+        .slider-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 0 60px;
+        }
+        
+        .slider-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            padding: 20px;
+        }
+        
+        .slider-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .nutrition-card {
+            flex: 0 0 auto;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+            min-width: 220px;
+            transition: 0.3s;
+        }
+        
+        .nutrition-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .nutrition-card img {
+            width: 90px;
+            margin-bottom: 15px;
+        }
+        
+        /* TOMBOL PANAH SLIDER */
+        .arrow {
+            background-color: var(--radiate);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            position: absolute;
+            top: 45%;
+            transform: translateY(-50%);
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .arrow:hover {
+            background: #d86300;
+        }
+        
+        .arrow.left { left: 10px; }
+        .arrow.right { right: 10px; }
+
+        .snack-section {
+            padding: 60px 20px;
+            background-color: var(--herb);
+            text-align: center;
+            position: relative;
+        }
+        .snack-section {
+            padding: 60px 20px;
+            background-color: var(--herb); /* ✅ Background hijau HANYA di sini */
+            text-align: center;
+            position: relative;
+        }
+        .snack-section h2 {
+            color: var(--gleam);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-align: left; /* ✅ Rata kiri */
+            padding-left: 300px; /* ✅ Tambahkan padding kiri sesuai kebutuhan */
+        }
+
+        /* FLEX CONTAINER - Ini kunci untuk penempatan */
+        .snack-content {
+            display: flex;
+            flex-direction: row; /* Pastikan horizontal */
+            align-items: center; /* Untuk align top */
+            justify-content: space-between;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            flex-wrap: wrap;
+        }
+
+        /* GAMBAR - di kiri */
+        .snack-content img {
+            width: 350px;
+            height: 350px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* TEKS - di kanan */
+        .snack-info {
+            flex: 2;
+        }
+
+        .snack-info h4 {
+            color: var(--gleam);
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 0px;
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.2;
+        }
+
+        .snack-info p {
+            color: var(--pearl);
+            line-height: 1.7;
+            font-size: 1.1rem;
+            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 0px;
+        }
+        
+        #snackSlider {
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            gap: 2rem;
+            padding: 1rem 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        #snackSlider::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+        
+        /* Style untuk setiap card */
+        #snackSlider > div {
+            flex: 0 0 auto; /* Prevent shrinking */
+            width: 250px; /* Sesuaikan dengan lebar card Anda */
+            scroll-snap-align: start; /* Optional: smooth snap */
+        }
+        
+        /* Card pertama mentok ke kiri */
+        #snackSlider > div:first-child {
+            margin-left: 0;
+        }
+        
+        .slider-container {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            padding-left: 0; /* Hilangkan padding kiri container */
+            padding-right: 60px; /* Tetap beri space kanan untuk tombol */
+        }
+        
+        /* Style tombol prev/next */
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: #ff8c42; /* Warna orange seperti di gambar */
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+        }
+        
+        #prevSnack {
+            left: 1px;
+        }
+        
+        #nextSnack {
+            right: 1px;
+        }
+        
+        .slider-button.hidden {
+            opacity: 0;
+            pointer-events: none
+        }
+
+        /* SPORT SECTION - Bagian olahraga */
+        /* CONTAINER utama sport */
+        .sport-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #6A8042 10%, #1E3006 100%);
+            border-radius: 40px;
+            padding: 80px 100px;
+            gap: 60px;
+            color: #ffffff;
+            position: relative;
+            max-width: 1400px;
+            margin: 60px auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        /* Elemen dekoratif background */
+        .sport-container::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 140, 66, 0.1) 0%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            z-index: 0;
+        }
+        
+        /* GAMBAR sport */
+        .sport-image {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .sport-image img {
+            width: 300px;
+            height: auto;
+            border-radius: 30px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #ffffff 0%, #fff3c5 100%);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .sport-image img:hover {
+            transform: scale(1.03) rotate(-2deg);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* TEKS sport */
+        .sport-text {
+            flex: 1;
+            z-index: 2;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .sport-text h3 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-align: left;
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #FFE787 0%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .sport-text .highlight {
+            color: #ff8c42;
+            font-weight: 700;
+            margin-bottom: 0px;
+            font-size: 1.8rem;
+            text-align: left;
+            font-family: 'Segoe UI', sans-serif;
+            display: block;
+            letter-spacing: 0.5px;
+        }
+        
+        .sport-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: left;
+            color: #ffffff;
+            margin-top: 0px;
+        }
+        
+        /* ACTIVITIES sport - card kegiatan olahraga */
+        .sport-activities {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            margin-top: 100px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+        
+        .activity {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.4s ease;
+            position: relative;
+        }
+        
+        .activity:hover {
+            transform: translateY(-15px);
+        }
+        
+        .activity img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 5px solid #fff;
+            position: relative;
+        }
+        
+        .activity img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(255, 140, 66, 0.3);
+            border-color: #ff8c42;
+        }
+        
+        /* Efek glow saat hover */
+        .activity::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 140, 66, 0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        
+        .activity:hover::before {
+            opacity: 1;
+        }
+        
+        .activity p {
+            color: #3a5a40;
+            font-weight: 700;
+            background: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        /* TOMBOL klik untuk detail */
+        .click-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ED7A13 0%, #ff8c42 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 5px 20px rgba(237, 122, 19, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .click-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff8c42 0%, #ED7A13 100%);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .click-btn:hover::before {
+            left: 0;
+        }
+        
+        .click-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(237, 122, 19, 0.4);
+        }
+        
+        .click-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* SLEEP SECTION - Bagian tidur berkualitas */
+        .sleep-section {
+            padding: 60px 40px;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .sleep-content {
+    max-width: 1000px;    /* Lebar maksimal konten */
+    /* Ubah nilai sesuai kebutuhan: */
+    max-width: 1000px;    /* Lebih sempit */
+    max-width: 100%;      /* Full width (mengikuti parent) */
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .bowl-image-container {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .circle-bg {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(135deg, #FFE66D 0%, #FFF4A3 100%);
+            border-radius: 50%;
+            z-index: 1;
+            transform: translateX(30px);
+        }
+
+        .bowl-image {
+            position: relative;
+            z-index: 2;
+            width: 400px;
+            height: 550px;
+            object-fit: cover;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.15));
+            transform: translateX(30px);
+        }
+
+        .sleep-text {
+            flex: 1.8;
+            order: 5;
+            transform: translateX(-40px);
+            margin-top: -50px;
+            text-align: center;
+        }
+
+
+        .sleep-text .Tips-label {
+            color: #ED7A13;
+            font-size: 30px;
+            letter-spacing: 2px;
+             margin-bottom: 5px;
+             font-weight: 600;
+        }
+
+        .sleep-text h1 {
+            color: #6A8042;
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-style:'Segoe UI', sans-serif;
+            line-height: 1.2;
+        }
+
+
+        .sleep-text p {
+            color: #000000;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+
+        
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sleep-section {
+                padding: 40px 20px;
+            }
+
+            .sleep-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .circle-bg {
+                width: 300px;
+                height: 300px;
+            }
+
+            .bowl-image {
+                width: 280px;
+                height: 280px;
+            }
+
+            .sleep-text h1 {
+                font-size: 42px;
+            }
+        }
+
+        /* TIPS SECTION - Bagian tips tidur */
+        .tips-section { 
+            padding: 60px 40px;
+            background-color: #6A8042;
+        }
+        
+        .tips-container { 
+            max-width: 1300px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px 40px;
+        }
+        
+        .tips-card { 
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 20px;
+            gap: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .tips-card:hover { 
+            transform: translateY(-5px);
+        }
+        
+        .tips-card img { 
+            width: 160px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        
+        .tips-text h3 { 
+            font-size: 18px;
+            color: #1E3006;
+            margin-bottom: 8px;
+        }
+        
+        .tips-text p { 
+            font-size: 14px;
+            color: #181818;
+            line-height: 1.6;
+        }
+
+        /* MODAL - Popup untuk detail olahraga */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.4s;
+        }
+        
+        .close-btn {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: #e74c3c;
+        }
+        
+        #modalTitle {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+        
+        #modalText {
+            color: #555;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1200px) {
+            .sport-container {
+                padding: 60px 50px;
+                gap: 40px;
+            }
+            
+            .sport-image img {
+                width: 450px;
+            }
+            
+            .sport-text h3 {
+                font-size: 3rem;
+            }
+            
+            .sport-activities {
+                gap: 50px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sport-container {
+                flex-direction: column;
+                padding: 40px 30px;
+                text-align: center;
+                margin: 30px 15px;
+            }
+            
+            .sport-image img {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .sport-text h3 {
+                font-size: 2.5rem;
+                text-align: center;
+            }
+            
+            .sport-text .highlight,
+            .sport-text p {
+                text-align: center;
+            }
+            
+            .sport-activities {
+                gap: 40px;
+                margin-top: 60px;
+            }
+            
+            .activity img {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .sleep-section {
+                padding: 50px 30px;
+                margin: 40px 15px;
+            }
+            
+            .tips-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .tips-card img {
+                width: 100%;
+                height: 180px;
+            }
+            
+            .sleep-section {
+                padding: 40px 20px;
+            }
+            
+            .sleep-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .circle-bg {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .bowl-image {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .sleep-text h1 {
+                font-size: 42px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .sport-text h3 {
+                font-size: 2rem;
+            }
+            
+            .sport-text .highlight {
+                font-size: 1.3rem;
+            }
+            
+            .activity img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .activity p {
+                font-size: 0.9rem;
+                padding: 6px 15px;
+            }
+            
+            .tips-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <div class="logo-image">
+            <img src="Healthy.png" alt="Logo Healthy">
+        </div>
+        <nav>
+            <ul class="nav-links"> <!-- PASTIKAN class di sini -->
+                <li><a href="index.html" class=>HOME</a></li>
+                <li><a href="rekomendasi.html" class="active">REKOMENDASI</a></li>
+                <li><a href="jadwal.php">JADWAL</a></li>
+                <li><a href="logout.php" style="color: white;">LOGOUT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-rekomendasi">
+        <div class="hero-text">
+            <h1><span class="orange">REKOMENDASI</span></h1>
+            <h2><span class="green">Pola Hidup Sehat</span></h2>
+            <p>
+                Dapatkan berbagai saran dan kebiasaan positif untuk meningkatkan kualitas hidupmu.
+                Mulai dari pilihan makanan bergizi, rutinitas olahraga, hingga kebiasaan sederhana
+                yang dapat membuat tubuh lebih bugar.
+            </p>
+        </div>
+    </section>
+
+    <div class="nutrition-section">
+        <h3>KEBUTUHAN NUTRISI TUBUH</h3>
+        <div class="slider-wrapper">
+            <button class="arrow left" id="prevBtn">&#10094;</button>
+            <div class="slider-container" id="nutritionSlider">
+                <div class="nutrition-card">
+                    <img src="Karbohidrat.PNG" alt="Karbohidrat">
+                    <h4>Karbohidrat</h4>
+                    <p>Sumber utama energi bagi tubuh</p>
+                </div>
+                <div class="nutrition-card">
+                    <img src="Protein.PNG" alt="Protein">
+                    <h4>Protein</h4>
+                    <p>Membangun dan memperbaiki jaringan tubuh</p>
+                </div>
+                <div class="nutrition-card">
+                    <img src="vitamin.png" alt="Vitamin">
+                    <h4>Vitamin</h4>
+                    <p>Menjaga daya tahan tubuh</p>
+                </div>
+                <div class="nutrition-card">
+                    <img src="mineral.png" alt="Mineral">
+                    <h4>Mineral</h4>
+                    <p>Mendukung fungsi organ tubuh</p>
+                </div>
+                <div class="nutrition-card">
+                    <img src="Lemak.png" alt="Lemak">
+                    <h4>Lemak</h4>
+                    <p>Sumber energi dan pelindung organ</p>
+                </div>
+                <div class="nutrition-card">
+                    <img src="serat.png" alt="Serat">
+                    <h4>Serat</h4>
+                    <p>Melancarkan pencernaan tubuh</p>
+                </div>
+                <div class="nutrition-card">
+                    <img src="Kalsium.png" alt="Kalsium">
+                    <h4>Kalsium</h4>
+                    <p>Menguatkan tulang dan gigi</p>
+                </div>
+            </div>
+            <button class="arrow right" id="nextBtn">&#10095;</button>
+        </div>
+    </div>
+
+    <div class="snack-section">
+        <div class="snack-content">
+            <div>
+                <div class="snack-info">
+                    <h4>Asupan Ringan Sehat ?</h4>
+                    <p>Pilih dan konsumsilah camilan yang tepat, sehat, dan bernutrisi untuk memperkaya cakupan gizi harian yang seimbang. 
+                       Hal ini penting guna mendukung proses pertumbuhan optimal, menyediakan sumber energi yang berkelanjutan, serta memasok kalori yang berkualitas agar tubuh tetap bertenaga, fokus, dan produktif dalam menjalani berbagai aktivitas sehari-hari yang padat dan menuntut.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="slider-wrapper">
+            <button class="arrow left" id="prevSnack">&#10094;</button>
+            <div class="slider-container" id="snackSlider">
+                <div class="nutrition-card">
+                    <img src="almond.png" alt="Kacang Almond">
+                    <h4>Kacang Almond</h4>
+                    <p>Kaya akan vitamin E dan lemak sehat</p>
+                </div>
+                <div class="nutrition-card">
+                    <img src="yogurt.png" alt="Yogurt">
+                    <h4>Yogurt</h4>
+                    <p>Probiotik alami untuk pencernaan sehat</p>
+                </div>
+                <div class="nutrition-card">
+                    <img src="oat.png" alt="Oat Milk">
+                    <h4>Oat Milk</h4>
+                    <p>Alternatif susu rendah kalori</p>
+                </div>
+                <div class="nutrition-card">
+                    <img src="roti gandum.png" alt="Roti Gandum">
+                    <h4>Roti Gandum</h4>
+                    <p>Sumber serat dan karbohidrat kompleks</p>
+                </div>
+                <div class="nutrition-card">
+                    <img src="puding.png" alt="Pudding">
+                    <h4>Pudding</h4>
+                    <p>Camilan rendah gula dengan varian rasa</p>
+                </div>
+                <div class="nutrition-card">
+                    <img src="buah.png" alt="Buah Segar">
+                    <h4>Buah Segar</h4>
+                    <p>Sumber vitamin dan mineral alami</p>
+                </div>
+            </div>
+            <button class="arrow right" id="nextSnack">&#10095;</button>
+        </div>
+    </div>
+
+    <section class="sport-section">
+        <div class="sport-container">
+            <div class="sport-image">
+                <img src="sport.png" alt="Sehat Dengan Bergerak">
+            </div>
+            <div class="sport-text">
+                <p class="highlight">Gerakan Kecil Membawa Perubahan Besar!</p>
+                <h3>Sehat Dengan Bergerak ?</h3>
+                <p>
+                    Pentingnya olahraga melampaui sekadar angka di timbangan. Sebuah fondasi holistik dari kualitas hidup, menjaga tubuh dari penyakit, memelihara ketahanan mental, meningkatkan kepercayaan diri, dan memberikan energi untuk menjalani hari dengan lebih produktif dan bersemangat. 
+                    Yuk! Temukan inspirasi olahraga sederhana yang dapat kamu lakukan kapan saja untuk hidup lebih sehat.
+                </p>
+            </div>
+        </div>
+        <div class="sport-activities">
+            <div class="activity">
+                <img src="lari.jpg" alt="Lari" onclick="openModal('Lari')">
+                <p>LARI</p>
+                <button class="click-btn" onclick="openModal('Lari')">VIEW DETAILS</button>
+            </div>
+            <div class="activity">
+                <img src="senam.jpg" alt="Senam" onclick="openModal('Senam')">
+                <p>SENAM</p>
+                <button class="click-btn" onclick="openModal('Senam')">VIEW DETAILS</button>
+            </div>
+            <div class="activity">
+                <img src="bersepeda.jpg" alt="Bersepeda" onclick="openModal('Bersepeda')">
+                <p>BERSEPEDA</p>
+                <button class="click-btn" onclick="openModal('Bersepeda')">VIEW DETAILS</button>
+            </div>
+            <div class="activity">
+                <img src="workout.jpg" alt="Workout" onclick="openModal('Workout')">
+                <p>WORKOUT</p>
+                <button class="click-btn" onclick="openModal('Workout')">VIEW DETAILS</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="sleep-section">
+        <div class="sleep-content">
+            <div class="bowl-image-container">
+                <div class="circle-bg"></div>
+                <img src="Jam Tidur.png" alt="Kiev Bowl" class="bowl-image">
+            </div>
+            
+            <div class="sleep-text">
+                <p class="Tips-label">TIPS</p>
+                <h1>TIDUR BERKUALITAS</h1>
+                <p>
+                    Tidur berkualitas merupakan salah satu pilar utama dalam menerapkan pola hidup sehat yang seimbang. 
+                    Tidur yang berkualitas sekitar 7–9 jam per malam hal tersebut memberikan tubuh waktu untuk melakukan proses pemulihan sel, mengatur keseimbangan hormon, dan menjaga fungsi organ tubuh tetap optimal.
+                    Dengan membiasakan pola tidur yang sehat, meningkatkan energi, produktivitas, dan kualitas hidup secara keseluruhan, sehingga mampu menjalani aktivitas sehari-hari dengan lebih fokus, segar, dan bertenaga.
+                </p>
+            </div>
+        </div>
+    </section>
+
+   <section class="tips-section">
+    <div class="tips-container">
+
+        <div class="tips-card">
+            <span class="tips-label">TIPS 1</span>
+            <h3>Tidur & Bangun di Jam yang Sama</h3>
+            <p>
+               Biasakan tidur dan bangun di waktu yang konsisten agar jam biologis tubuh teratur.
+            </p>
+        </div>
+
+        <div class="tips-card">
+            <span class="tips-label">TIPS 2</span>
+            <h3>Jauhkan Gadget Sebelum Tidur</h3>
+            <p>
+                Hindari penggunaan HP, laptop, atau TV minimal 30–60 menit 
+                ebelum tidur karena cahaya biru bisa menghambat hormon melatonin.
+            </p>
+        </div>
+
+        <div class="tips-card">
+            <span class="tips-label">TIPS 3</span>
+            <h3>Ciptakan Lingkungan Tidur yang Nyaman</h3>
+            <p>
+                Ciptakan lingkungan tidur yang nyaman dengan suhu sejuk,
+                pencahayaan redup, dan kasur yang mendukung.
+            </p>
+        </div>
+
+        <div class="tips-card">
+            <span class="tips-label">TIPS 4</span>
+            <h3>Tenangkan Pikiran Sebelum Tidur</h3>
+            <p>
+                Lakukan relaksasi seperti menarik napas dalam, membaca buku ringan, 
+                atau berdoa agar pikiran lebih rileks.
+            </p>
+        </div>
+
+        <div class="tips-card">
+            <span class="tips-label">TIPS 5</span>
+            <h3>Hindari Kafein di Malam Hari</h3>
+            <p>
+                Jangan minum kopi, teh, atau minuman berenergi. 
+                Minum minimal 4–6 jam sebelum tidur
+            </p>
+        </div>
+
+        <div class="tips-card">
+            <span class="tips-label">TIPS 6</span>
+            <h3>Jangan Tidur Terlalu Kenyang atau Lapar</h3>
+            <p>
+                Makan berat sebelum tidur bisa mengganggu pencernaan, 
+                tapi perut terlalu lapar juga membuat sulit tidur.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+    <div id="sportModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Judul Olahraga</h2>
+            <p id="modalText">Deskripsi penjelasan akan muncul di sini.</p>
+        </div>
+    </div>
+
+    <script>
+        // Script untuk slider nutrisi
+        const slider = document.getElementById('nutritionSlider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function updateButtons() {
+            const maxScroll = slider.scrollWidth - slider.clientWidth;
+            prevBtn.classList.toggle('hidden', slider.scrollLeft <= 0);
+            nextBtn.classList.toggle('hidden', slider.scrollLeft >= maxScroll - 1);
+        }
+        
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: 270, behavior: 'smooth' });
+            setTimeout(updateButtons, 300);
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -270, behavior: 'smooth' });
+            setTimeout(updateButtons, 300);
+        });
+        
+        slider.addEventListener('scroll', updateButtons);
+        window.addEventListener('load', updateButtons);
+
+        // Script untuk slider snack
+        const snackSlider = document.getElementById('snackSlider');
+        const prevSnack = document.getElementById('prevSnack');
+        const nextSnack = document.getElementById('nextSnack');
+
+        function updateSnackButtons() {
+            const maxScroll = snackSlider.scrollWidth - snackSlider.clientWidth;
+            prevSnack.classList.toggle('hidden', snackSlider.scrollLeft <= 0);
+            nextSnack.classList.toggle('hidden', snackSlider.scrollLeft >= maxScroll - 1);
+        }
+        
+        nextSnack.addEventListener('click', () => {
+            snackSlider.scrollBy({ left: 270, behavior: 'smooth' });
+            setTimeout(updateSnackButtons, 300);
+        });
+        
+        prevSnack.addEventListener('click', () => {
+            snackSlider.scrollBy({ left: -270, behavior: 'smooth' });
+            setTimeout(updateSnackButtons, 300);
+        });
+        
+        snackSlider.addEventListener('scroll', updateSnackButtons);
+        window.addEventListener('load', updateSnackButtons);
+
+        // Data untuk modal olahraga
+        const sportData = {
+            'Lari': "Olahraga lari adalah cara termudah dan termurah untuk menjaga kesehatan jantung (kardiovaskular). Lari secara rutin dapat membakar kalori secara signifikan, memperkuat tulang kaki, dan meningkatkan stamina. Disarankan melakukan lari pagi selama 15-30 menit untuk menghirup udara segar dan meningkatkan mood sebelum memulai hari.",
+            'Senam': "Senam aerobik atau zumba sangat direkomendasikan karena melibatkan pergerakan seluruh tubuh dengan irama yang menyenangkan. Selain meningkatkan fleksibilitas dan keseimbangan tubuh, senam juga efektif mengurangi stres. Sangat cocok dilakukan bersama teman atau keluarga agar lebih semangat.",
+            'Bersepeda': "Bersepeda adalah olahraga 'low impact' yang sangat baik, artinya minim risiko cedera pada persendian lutut dibandingkan lari. Manfaat utamanya adalah menguatkan otot kaki, meningkatkan kesehatan paru-paru, dan mengurangi kadar lemak tubuh. Bonusnya, Anda bisa sambil menikmati pemandangan sekitar!",
+            'Workout': "Workout (latihan beban/kalistenik) berfokus pada pembentukan massa otot dan kekuatan tubuh. Latihan seperti push-up, sit-up, atau angkat beban akan meningkatkan metabolisme tubuh, sehingga pembakaran lemak tetap terjadi bahkan saat Anda sedang istirahat. Ini sangat penting untuk menjaga postur tubuh yang tegap dan ideal."
+        };
+
+        // Script untuk modal
+        const modal = document.getElementById("sportModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalText = document.getElementById("modalText");
+
+        function openModal(sportType) {
+            modalTitle.innerText = sportType;
+            modalText.innerText = sportData[sportType];
+            modal.style.display = "block";
+        }
+        
+        function closeModal() {
+            modal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <div class="main-cursor"></div>
+
+    <script>
+        const mainCursor = document.querySelector(".main-cursor");
+
+        window.addEventListener("mousemove", function (e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // 1. Gerakkan kursor utama (gambar besar) secara instan
+            if (mainCursor) {
+                mainCursor.style.left = `${posX}px`;
+                mainCursor.style.top = `${posY}px`;
+            }
+
+            // 2. Panggil fungsi untuk membuat partikel (gambar kecil)
+            createParticle(posX, posY);
+        });
+
+        // Fungsi untuk menciptakan elemen gambar jejak
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.classList.add('cursor-particle');
+            document.body.appendChild(particle);
+
+            // Set posisi awal partikel tepat di lokasi mouse saat ini
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+
+            // Tambahkan sedikit variasi rotasi acak agar terlihat alami
+            const randomRotation = Math.random() * 360;
+            // Kita set transform awal di sini agar bisa ditimpa oleh animasi CSS
+            particle.style.setProperty('--rotation', `${randomRotation}deg`);
+
+            // Hapus elemen partikel setelah 1 detik (sesuai durasi animasi di CSS)
+            // agar website tidak menjadi berat.
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
