@@ -1,8 +1,7 @@
-# Pola Hidup Sehat — Web Edukasi Gaya Hidup Sehat
+# HealthyLife: Transformasi Pola Hidup Sehat Dengan Smart Scheduling System Berbasis Website
 
 ## Deskripsi
-**Pola Hidup Sehat** adalah website edukatif yang mengajak pengguna untuk menjaga kesehatan tubuh melalui berbagai aspek seperti **nutrisi, camilan sehat, olahraga**, dan **kualitas tidur**.  
-Website ini dirancang menggunakan **HTML dan CSS murni** dengan tampilan yang modern, lembut, dan informatif.  
+Website “HealthyLife” hadir sebagai wujud konkret dari penerapan teknologi informasi di bidang kesehatan masyarakat. Website ini secara spesifik dirancang untuk menjadi sumber informasi dan pendamping digital dalam membangun kebiasaan hidup sehat. Melalui platform ini, pengguna dapat memperoleh berbagai rekomendasi terkait asupan nutrisi yang seimbang, cemilan sehat, aktivitas olahraga yang sesuai kebutuhan tubuh, serta jadwal tidur yang ideal. Selain itu, website juga menyediakan fitur catatan harian hidup sehat, yang memungkinkan pengguna untuk mencatat dan memantau aktivitas kesehatannya secara teratur.
 
 ---
 
@@ -21,9 +20,11 @@ Website ini dirancang menggunakan **HTML dan CSS murni** dengan tampilan yang mo
 |------------|-----------|
 | **HTML5** | Struktur utama halaman web |
 | **CSS3** | Desain, layout, dan efek interaktif |
+| **PHP** | Logout/Login, koneksi, jadwal|
 | **Google Fonts** (Poppins, Segoe UI, Montserrat) | Estetika teks |
 | **Flexbox** | Pengaturan tata letak responsif |
 | **Gradient & Shadow Effects** | Memberikan tampilan lembut dan profesional |
+| **xampp** | membuat dan menyipan database |
 
 ---
 
@@ -31,17 +32,23 @@ Website ini dirancang menggunakan **HTML dan CSS murni** dengan tampilan yang mo
 ```
 HealthyLife/
 │
-├── Pola Hidup Sehat.html           # Halaman utama
-├── style.css                       # File CSS utama
+├── Login.php
+├── Register.php
+├── Koneksi.php
+├── Index.html
+├── Pola Hidup Sehat.html           
+├── jadwal.php
+├── style.css                       
 ├── /images                         # Folder gambar pendukung (nutrisi, olahraga, camilan, dll)
-└── README.md                       # Dokumentasi proyek
+├── Logout.php
+└── README.md                       
 ```
 
 ---
 
 ## Cara Menjalankan Proyek
 Buka tautan tersebut dalam browser address  
-  https://minirsyad.github.io/Pola-Hidup-Sehat/ 
+  (http://localhost/HealthyLife/login.php)
 
 ---
 
@@ -56,9 +63,9 @@ Tampilan utama terdiri dari:
 ## Kontributor
 | Nama | Peran |
 |------|--------|
-| **Muh Ikbar Nur Irsyad** | Pengembang, desain antarmuka |
+| **Muh Ikbar Nur Irsyad** | Pengembang, desain antarmuka,database |
 | **Fikro Nabila** | Pengembang, desain antarmuka, dan penulis dokumentasi |
-| **Naufal Ihsan Anwari** | Pengembang, desain antarmuka |
+| **Naufal Ihsan Anwari** | Pengembang, desain antarmuka,database |
 
 ---
 
